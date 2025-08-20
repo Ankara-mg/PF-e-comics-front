@@ -4,32 +4,32 @@ import {
   Route
 } from "react-router-dom";
 // Pages
-import Home from './pages/home/Home';
-import Shop from './pages/shop/Shop';
-import CardDetail from './components/card-detail/CardDetail';
+import Home from './pages/home/Home.jsx';
+import Shop from './pages/shop/Shop.jsx';
+import CardDetail from './components/card-detail/CardDetail.jsx';
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
-import DashboardNav from './pages/dashboard/dashboardNav/DashboardNav';
+import DashboardNav from './pages/dashboard/dashboardNav/DashboardNav.jsx';
 
-import Favorites from './pages/favorites/Favorites';
-import Checkout from './components/payment/Payment'
-import Admin from './pages/dashboard/admin/Admin';
-import Users from './pages/dashboard/users/Users'
-import Orders from './pages/dashboard/orders/Orders';
-import UploadComic from './pages/dashboard/uploadComic/UploadComic'
-import UserProfile from './pages/UserProfile/UserProfile';
-import Reviews from './pages/dashboard/reviews/Reviews';
-import Register from './components/login/Register';
-import { UserRoute } from './components/routes/UserRoute'
-import { PublicRoute } from './components/routes/PublicRoute'
-import { AdminRoute } from './components/routes/AdminRoute'
-import Logout from './components/login/Logout';
+import Favorites from './pages/favorites/Favorites.jsx';
+import Checkout from './components/payment/Payment.jsx'
+import Admin from './pages/dashboard/admin/Admin.jsx';
+import Users from './pages/dashboard/users/Users.jsx'
+import Orders from './pages/dashboard/orders/Orders.jsx';
+import UploadComic from './pages/dashboard/uploadComic/UploadComic.jsx'
+import UserProfile from './pages/UserProfile/UserProfile.jsx';
+import Reviews from './pages/dashboard/reviews/Reviews.jsx';
+import Register from './components/login/Register.jsx';
+import { UserRoute } from './components/routes/UserRoute.jsx'
+import { PublicRoute } from './components/routes/PublicRoute.jsx'
+import { AdminRoute } from './components/routes/AdminRoute.jsx'
+import Logout from './components/login/Logout.jsx';
 //import Tabslogin from './components/account/Tabslogin';
-import { Notfound } from './components/NotFound/Nofound';
-import ModalLogin from './components/account/ModalLogin';
-import ModalRegister from './components/account/ModalRegister';
-import Purchases from './pages/UserProfile/Purchases';
+import { Notfound } from './components/NotFound/Nofound.jsx';
+import ModalLogin from './components/account/ModalLogin.jsx';
+import ModalRegister from './components/account/ModalRegister.jsx';
+import Purchases from './pages/UserProfile/Purchases.jsx';
 
-import ShoppingCart2 from './pages/shop/MB_Shop'
+import ShoppingCart2 from './pages/shop/MB_Shop.jsx'
 
 function App() {
   return (

@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
 .container-shop {
   height: 100vh;
   overflow-y: auto;
@@ -7,8 +9,6 @@
   color: gray;
   padding-left: 3rem;
 }
-
-@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
 
 
 .mt-100{

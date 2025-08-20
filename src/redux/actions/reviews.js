@@ -1,5 +1,5 @@
 import axios from "axios";
-const backendURL = process.env.REACT_APP_API;
+const backendURL = import.meta.env.VITE_API;
 
 export function getReviews(payload) {
   return async function (dispatch) {

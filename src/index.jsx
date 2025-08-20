@@ -11,7 +11,7 @@ import { AuthContextProvider } from './context/authContext'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(`pk_test_51LfTSHGC3HF3I57E5nG3wk53uKn9xDdyVUV7rgoM2LkTu8J1xqZOTAnM8huTJNLB6eaf4wIGbCjwui0QJQisdXu400ndMdI9Er`)
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

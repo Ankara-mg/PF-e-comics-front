@@ -1,18 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart, emptyCart } from "../../redux/actions/shop_favs_rating";
-import Button from 'react-bootstrap/Button'
+import { removeFromCart } from "../../redux/actions/shop_favs_rating";
+import { Button, Col, Container, Row, Table } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import NavBar from "../../components/navBar/Navbar";
-import {
-  MDBBtn,
-  MDBCol,
-  MDBContainer,
-  MDBRow,
-  MDBTable,
-  MDBTableBody,
-  MDBTableHead,
-} from "mdb-react-ui-kit";
 import "./MB_Shop.css"
 import Swal from "sweetalert2";
 import cartIcon from '../../assets/cart2.png'
@@ -84,12 +75,12 @@ const ShoppingCart2 = () => {
     <div className="container-shop">
       <NavBar searchbar={false}></NavBar>
       <section className="mt-5">
-        <MDBContainer className="test-shop py-5 h-100">
-          <MDBRow className="justify-content-center align-items-center h-100">
-            <MDBCol>
-              <MDBTable responsive>
+        <Container className="test-shop py-5 h-100">
+          <Row className="justify-content-center align-items-center h-100">
+            <Col>
+              <Table responsive>
                 {/* Issues */}
-                <MDBTableHead>
+                <th>
                   <tr>
                     <th scope="col" className="h5">
                       Shopping Bag
@@ -99,7 +90,7 @@ const ShoppingCart2 = () => {
                     <th scope="col">Price</th>
                     <th scope="col">Remove</th>
                   </tr>
-                </MDBTableHead>
+                </th>
                 {
                   cart_shopping.length > 0 ? 
                    <Button className="btn-reviews"  variant="primary"    onClick={removeAll} width={50} >
@@ -112,7 +103,7 @@ const ShoppingCart2 = () => {
                   cart_shopping.map(product => {
                     totalPrice += product.price
                     return (
-                      < MDBTableBody >
+                      < tbody >
                         <tr>
                           <th scope="row">
                             <div className="d-flex align-items-center">
@@ -152,25 +143,25 @@ const ShoppingCart2 = () => {
                             </p>
                           </td>
                         </tr>
-                      </MDBTableBody>
+                      </tbody>
                     )
                   })
                 }
-              </MDBTable>
-            </MDBCol>
-          </MDBRow>
+              </Table>
+            </Col>
+          </Row>
                 {
                   totalPrice > 0 ?
                       
                     <Link to='/user/shop/checkout' >
-                      <MDBRow className="payment-btn">
-                        <MDBBtn size="lg">
+                      <Row className="payment-btn">
+                        <Button size="lg">
                           <div className="px-2">
                             <span className="px-2">Checkout</span>
                             <span>${Number(totalPrice).toFixed(2)}</span>
                           </div>
-                        </MDBBtn>
-                      </MDBRow>
+                        </Button>
+                      </Row>
                     </Link>
 
                     : 
@@ -187,7 +178,7 @@ const ShoppingCart2 = () => {
                       </div>
                     </div>
                 }
-        </MDBContainer>
+        </Container>
       </section>
     </div>
   );

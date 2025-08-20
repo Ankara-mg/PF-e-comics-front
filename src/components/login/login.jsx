@@ -3,13 +3,12 @@ import axios from 'axios';
 import { useState } from 'react';
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
-import { MDBContainer, MDBCol, MDBRow, MDBInput } from 'mdb-react-ui-kit';
-import { Button } from 'react-bootstrap';
+import { Button, Col, Container, Row, Form } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import {useAuthContext} from '../../context/authContext'
 import LoginAuth from '../Logingoogle/Login';
 
-const backendURL = process.env.REACT_APP_API;
+const backendURL = import.meta.env.VITE_API;
 
 function validate(input) {
   let errors = {};
@@ -83,21 +82,48 @@ function LoginApp() {
 
 
   return (
-    <MDBContainer fluid className="p-3 my-5 h-custom">
+    <Container fluid className="p-3 my-5 h-custom">
 
-      <MDBRow>
+      <Row>
 
-        <MDBCol col='10' md='6'>
+        <Col col='10' md='6'>
           <img src="https://media.dcbservice.com/xlarge/OCT207144.jpg" className="img-fluid" alt="Sample image" />
-        </MDBCol>
+        </Col>
 
-        <MDBCol col='4' md='6'>
+        <Col col='4' md='6'>
           {input.email.length && errors && errors.email ? (
             <span className="texterror"> {errors.email} </span>
           ) : null}
-          <MDBInput value={input.email} name="email" onChange={handleChange} wrapperClass='mb-4' label='Email' id='formControlLg' type='email' size="lg" />
+          <Form.Group className="mb-4">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              value={input.email}
+              name="email"
+              onChange={handleChange}
+              type="email"
+              size="lg"
+              id="formControlLgEmail"
+              placeholder="Enter your email"
+            />
+          </Form.Group>
 
-          <MDBInput value={input.password} name="password" onChange={handleChange} wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg" />
+          <Form.Group className="mb-4 position-relative">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              value={input.password}
+              name="password"
+              onChange={handleChange}
+              type="password"
+              size="lg"
+              id="formControlLgPassword"
+              placeholder="Enter your password"
+            />
+            {input.password.length > 0 && errors?.password && (
+              <span className="text-danger position-absolute">
+                {errors.password}
+              </span>
+            )}
+          </Form.Group>
           {input.password.length && errors && errors.password ? (
             <span className="text-danger position-absolute"> {errors.password} </span>
           ) : null}
@@ -130,10 +156,10 @@ function LoginApp() {
               </Link>
             </div>
           
-        </MDBCol>
-      </MDBRow>
+        </Col>
+      </Row>
 
-    </MDBContainer>
+    </Container>
   );
 }
 

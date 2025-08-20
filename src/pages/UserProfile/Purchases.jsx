@@ -2,20 +2,12 @@
 
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart, emptyCart } from "../../redux/actions/shop_favs_rating";
+import { removeFromCart } from "../../redux/actions/shop_favs_rating";
 import { getAllPurchases } from "../../redux/actions/shop_favs_rating";
 import { Link } from "react-router-dom";
 import NavBar from "../../components/navBar/Navbar";
-import {
-  MDBBtn,
-  MDBCol,
-  MDBContainer,
-  MDBRow,
-  MDBTable,
-  MDBTableBody,
-  MDBTableHead,
-} from "mdb-react-ui-kit";
 import "./purchase.css"
+import { Col, Container, Row, Table } from "react-bootstrap";
 
 const Purchases = () => {
   const dispatch = useDispatch()
@@ -31,12 +23,12 @@ const Purchases = () => {
     <div className="container-shops">
       <NavBar searchbar={false}></NavBar>
       <section className="mt-5">
-        <MDBContainer className="test-shop py-5 h-100">
-          <MDBRow className="justify-content-centers align-items-center h-100">
-            <MDBCol>
-              <MDBTable responsive>
+        <Container className="test-shop py-5 h-100">
+          <Row className="justify-content-centers align-items-center h-100">
+            <Col>
+              <Table responsive>
                 {/* Issues */}
-                <MDBTableHead>
+                <thead>
                   <tr>
                     <th scope="col" className="h5">
                       Purchase Detail
@@ -45,14 +37,14 @@ const Purchases = () => {
                     <th scope="col">Format</th>
                     <th scope="col">Price</th>
                   </tr>
-                </MDBTableHead>
+                </thead>
               
+                <tbody>
                 {
                   purchase.map(product => {
                     
                     return (
-                      < MDBTableBody >
-                        <tr>
+                        <tr key={product.id || product.issue_number}>
                           <th scope="row">
                             <div className="d-flex align-items-center">
                               <img
@@ -88,14 +80,14 @@ const Purchases = () => {
                             </p>
                           </td>
                         </tr>
-                      </MDBTableBody>
                     )
                   })
                 }
-              </MDBTable>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+        </Container>
       </section>
     </div>
   );

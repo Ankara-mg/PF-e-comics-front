@@ -4,15 +4,8 @@ import { registerUser } from "../../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
-import {
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  // MDBBtn,
-  MDBIcon,
-  MDBInput,
-} from "mdb-react-ui-kit";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row, Form, InputGroup } from "react-bootstrap";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import "./Register.css";
 
@@ -98,20 +91,24 @@ function Register() {
 
 
   return (
-    <MDBContainer fluid className="p-3 my-5 h-custom" id="staticBackdrop" data-bs-backdrop="static">
-      <MDBRow>
-        <MDBCol col="10" md="6">
+    <Container fluid className="p-3 my-5 h-custom" id="staticBackdrop" data-bs-backdrop="static">
+      <Row>
+        <Col col="10" md="6">
           <img
             src="https://i.pinimg.com/originals/9c/04/fc/9c04fc0ab5432780d547faa89d6441c7.jpg"
             className="img-fluid"
             alt=""
           />
-        </MDBCol>
+        </Col>
 
-        <MDBCol col="4" md="6">
+        <Col col="4" md="6">
           <div className="d-flex flex-row align-items-center mb-4">
-            <MDBIcon fas icon="user me-3" size="lg" />
-            <MDBInput
+            <InputGroup size="lg" className="mb-4">
+              <InputGroup.Text>
+                <FaUser className="me-2" />
+              </InputGroup.Text>
+
+            <Form.Control 
               value={input.username}
               name="username"
               onChange={handleChange}
@@ -121,57 +118,61 @@ function Register() {
               type="user"
               size="lg"
             />
+            </InputGroup>
             {errors && errors.username ? (
               <span className="text-danger" > {errors.username} </span>
             ) : null}
           </div>
 
           <div className="d-flex flex-row align-items-center mb-4">
-            <MDBIcon fas icon="envelope me-3" size="lg" />
-            <MDBInput
+            <InputGroup size="lg" className="mb-4">
+              <InputGroup.Text>
+                <FaEnvelope />
+              </InputGroup.Text>
+            <Form.Control
               value={input.email}
               name="email"
               onChange={handleChange}
-              wrapperClass="mb-4"
-              label="Email"
-              id="formControlLg"
+              placeholder="Email"
               type="email"
-              size="lg"
             />
+            </InputGroup>
             {input.email.length && errors && errors.email ? (
               <span className="text-danger "> {errors.email} </span>
             ) : null}
           </div>
 
           <div className="d-flex flex-row align-items-center mb-4">
-            <MDBIcon fas icon="lock me-3" size="lg" />
-            <MDBInput
+            <InputGroup size="lg" className="mb-4">
+              <InputGroup.Text>
+                <FaLock />
+              </InputGroup.Text>
+            <Form.Control
               value={input.password}
               name="password"
               onChange={handleChange}
-              wrapperClass="mb-4"
-              label="Password"
-              id="formControlLg"
+              placeholder="Password"
               type="password"
-              size="lg"
             />
+            </InputGroup>
             {input.password.length && errors && errors.password ? (
               <span className="text-danger" > {errors.password} </span>
             ) : null}
           </div>
 
           <div className="d-flex flex-row align-items-center mb-4">
-            <MDBIcon fas icon="lock me-3" size="lg" />
-            <MDBInput
+            <InputGroup size="lg" className="mb-4">
+              <InputGroup.Text>
+                <FaLock />
+              </InputGroup.Text>
+            <Form.Control
               value={input.repeatpassword}
               name="repeatpassword"
               onChange={handleChange}
-              wrapperClass="mb-4"
-              label="verify your password"
-              id="formControlLg"
+              placeholder="Verify your password"
               type="password"
-              size="lg"
             />
+            </InputGroup>
             {input.repeatpassword.length && errors && errors.repeatpassword ? (
               <span className="text-danger"> {errors.repeatpassword} </span>
             ) : null}
@@ -206,9 +207,9 @@ function Register() {
             href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
             rel="stylesheet"
           />
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

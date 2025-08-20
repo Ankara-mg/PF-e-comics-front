@@ -28,7 +28,7 @@ const CardsGallery = () => {
       dispatch(setShoppingCart(userId))
     }
   }, [dispatch, userId])
-  
+
   /**-------- (solo los trae cuando estoy en el Home) -------- */
 
 

@@ -3,15 +3,15 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { sendEmail } from '../../redux/actions/admin';
 import { processPayment, removeFromCartOnly } from '../../redux/actions/shop_favs_rating';
-import { json, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import cardStyle from './payment.css'
+import './payment.css'
 import NavBar from '../navBar/Navbar';
 import Swal from 'sweetalert2';
 
 
 const Payment = () => {
-    const backendURL = process.env.REACT_APP_API;
+    const backendURL = import.meta.env.VITE_API;
     const url = `${backendURL}/shop/`
     const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
     let listEmail = []
@@ -116,7 +116,7 @@ const Payment = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter email address"
                 /> */}
-                <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
+                <CardElement id="card-element" onChange={handleChange} />
                 <button
                     disabled={processing || disabled || succeeded}
                     id="submit"

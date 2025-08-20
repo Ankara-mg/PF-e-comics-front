@@ -1,7 +1,7 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart, emptyCart } from "../../redux/actions/shop_favs_rating";
+import { removeFromCart } from "../../redux/actions/shop_favs_rating";
 
 import NavBar from "../../components/navBar/Navbar";
 import "./Shop.css"

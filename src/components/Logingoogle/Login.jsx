@@ -1,25 +1,17 @@
-import React, { useEffect } from 'react'
-import GoogleLogin from 'react-google-login';
+// import React, { useEffect } from 'react'
+// import GoogleLogin from 'react-google-login';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import axios from 'axios';
-import { gapi } from 'gapi-script';
+// import { gapi } from 'gapi-script';
 import './Login.css'
 export default function LoginAuth({ login }) {
 
-  const clientId = "73480857070-b1pmolqom7futp18ta7mjgf3naq9lk27.apps.googleusercontent.com"
-  const backendURL = process.env.REACT_APP_API;
-  useEffect(() => {
-    gapi.load("client: auth2", () => {
-      gapi.auth2.init({
-        clientId: clientId
-      })
-    })
-  }, [])
+  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+  const backendURL = import.meta.env.VITE_API;
 
   const responsegoogle = async (res) => {
-    const response = await axios({
-      url: `${backendURL}/login/auth/google`,
-      method: "POST",
-      data: { google: res.tokenId }
+    const response = await axios.post(`${backendURL}/login/auth/google`, {
+      google: res.credential
     })
    
     localStorage.setItem('token', JSON.stringify(response.data.token))
@@ -33,13 +25,12 @@ export default function LoginAuth({ login }) {
   return (
     <div>
       <div>
-        <GoogleLogin className='boton'
-          clientId="73480857070-b1pmolqom7futp18ta7mjgf3naq9lk27.apps.googleusercontent.com"
-          buttonText="Log in with Google"
-          onSuccess={responsegoogle}
-          onFailure={responsegoogle}
-          cookiePolicy={'single_host_origin'}
-        ></GoogleLogin>
+        <GoogleOAuthProvider clientId={clientId}>
+          <GoogleLogin
+            onSuccess={responsegoogle}
+            onError={() => console.log('Login Failed')}
+          />
+        </GoogleOAuthProvider>
       </div>
 
 
