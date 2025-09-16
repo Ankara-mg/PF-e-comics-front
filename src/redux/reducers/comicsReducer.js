@@ -7,6 +7,7 @@ const initialState = {
   filters: false,
   loading: true,
   loading_issues: true,
+  isWaking: false,
 };
 
 
@@ -52,8 +53,12 @@ const comicsReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: action.payload,
-        loading_issues: action.payload
+        loading_issues: action.payload,
+        isWaking: false,
       }
+    
+    case 'SHOW_WAKEUP_MESSAGE':
+      return { ...state, isWaking: true };
 
     case "SORT_ISSUES":
       return{

@@ -2,9 +2,15 @@ import axios from "axios";
 
 const backendURL = import.meta.env.VITE_API;
 
-export const getAllVolumes = () => {
+export const getAllVolumes = () => {  
   // const token = JSON.parse(localStorage.getItem("token"))
   return async (dispatch) => {
+    dispatch({ type: "GET_ALL_COMICS_START" });
+
+    const wakeTimeout = setTimeout(() => {
+      dispatch({ type: "SHOW_WAKEUP_MESSAGE" });
+    }, 2000);
+
     const volumes = await axios({
       method: 'GET',
       url: `${backendURL}/comics`,
@@ -12,6 +18,7 @@ export const getAllVolumes = () => {
       // "Authorization": `Bearer ${token.token}`
       // }
     })
+    clearTimeout(wakeTimeout);
     return dispatch({
       type: "GET_ALL_COMICS",
       payload: volumes.data
