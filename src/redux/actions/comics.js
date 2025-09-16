@@ -5,26 +5,45 @@ const backendURL = import.meta.env.VITE_API;
 export const getAllVolumes = () => {  
   // const token = JSON.parse(localStorage.getItem("token"))
   return async (dispatch) => {
-    dispatch({ type: "GET_ALL_COMICS_START" });
+    dispatch({ type: "SET_LOADING", payload: true });
 
     const wakeTimeout = setTimeout(() => {
       dispatch({ type: "SHOW_WAKEUP_MESSAGE" });
     }, 2000);
 
-    const volumes = await axios({
-      method: 'GET',
-      url: `${backendURL}/comics`,
-      // headers: {
-      // "Authorization": `Bearer ${token.token}`
-      // }
-    })
-    clearTimeout(wakeTimeout);
-    return dispatch({
-      type: "GET_ALL_COMICS",
-      payload: volumes.data
-    })
-  }
-}
+    const maxRetries = 3;
+    let retries = 0;
+
+    while (retries < maxRetries) {
+      try {
+        const volumes = await axios({
+          method: 'GET',
+          url: `${backendURL}/comics`,
+          timeout: 10000,
+        });
+
+        clearTimeout(wakeTimeout);
+        dispatch({ type: "SET_LOADING", payload: false });
+        dispatch({
+          type: "GET_ALL_COMICS",
+          payload: volumes.data
+        });
+        return;
+
+      } catch (error) {
+        retries++;
+        if (retries >= maxRetries) {
+          clearTimeout(wakeTimeout);
+          dispatch({ type: "SET_LOADING", payload: false });
+          console.error("Failed to fetch comics:", error.message);
+          return;
+        }
+
+        await new Promise(resolve => setTimeout(resolve, Math.pow(2, retries) * 1000));
+      }
+    }
+  };
+};
 
 export const volumeDetail = (id) => {
   return async (dispatch) => {
