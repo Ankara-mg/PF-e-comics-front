@@ -1,5 +1,3 @@
-
-import React from "react";
 import NavBar from "../../components/navBar/Navbar";
 import Favorites from "../favorites/Favorites";
 import './userprofile.css'

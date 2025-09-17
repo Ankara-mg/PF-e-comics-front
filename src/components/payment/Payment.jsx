@@ -3,10 +3,9 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { sendEmail } from '../../redux/actions/admin';
 import { processPayment, removeFromCartOnly } from '../../redux/actions/shop_favs_rating';
-import { Link, useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import './payment.css'
-import NavBar from '../navBar/Navbar';
 import Swal from 'sweetalert2';
 
 
@@ -47,7 +46,7 @@ const Payment = () => {
 
         try {
             if(!error){
-                const { data } = await axios.post(url + 'checkout', {
+                await axios.post(url + 'checkout', {
 
                     carrito: stateCart,
                     id: id,

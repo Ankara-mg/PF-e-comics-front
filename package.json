@@ -2,6 +2,7 @@
   "name": "e-comics-frontend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@auth0/auth0-react": "^2.4.0",
     "@react-oauth/google": "^0.12.2",

@@ -1,11 +1,7 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth0 } from '@auth0/auth0-react';
-import Logout from '../login/Logout'
 import Profile from '../login/Profile'
-import ModalLogin from "./ModalLogin";
-import { useState } from "react";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useAuthContext } from '../../context/authContext'
 import "./Account.css"
@@ -17,8 +13,6 @@ const Account = () => {
   // const dispatch = useDispatch();
   const navigate = useNavigate()
   const { isAuthenticated } = useAuth0()
-  const auth0_login = () => {
-  }
 
   function Logout() {
     logout()
@@ -26,9 +20,7 @@ const Account = () => {
 
   }
   const rol = JSON.parse(localStorage.getItem("ROL"))
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+ 
   return (
     <NavDropdown title="Account" id="navbarScrollingDropdown">
       <div className='login-style d-flex ps-3'>

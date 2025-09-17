@@ -1,9 +1,8 @@
-// import React, { useEffect } from 'react'
-// import GoogleLogin from 'react-google-login';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
-import axios from 'axios';
-// import { gapi } from 'gapi-script';
 import './Login.css'
+
+import axios from 'axios';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
+
 export default function LoginAuth({ login }) {
 
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID

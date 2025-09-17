@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllVolumes, reset_comicState } from "../../redux/actions/comics";
 import { setShoppingCart } from "../../redux/actions/shop_favs_rating";

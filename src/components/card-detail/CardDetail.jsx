@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { volumeDetail } from "../../redux/actions/comics";
 import { useNavigate, useParams } from "react-router-dom";

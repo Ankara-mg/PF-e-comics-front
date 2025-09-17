@@ -25,7 +25,7 @@ export const getLogin = () => {
 
 export function registerUser(data) {
   return async function () {
-    const register = await axios({
+    await axios({
       url: (`${backendURL}/user/signup`),
       method: 'POST',
       data: data

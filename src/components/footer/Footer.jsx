@@ -1,4 +1,3 @@
-import React from 'react';
 import { BsLinkedin, BsGithub } from 'react-icons/bs'
 import Sergio from '../../assets/devs/SergioFoto.jpeg'
 import Daniel from '../../assets/devs/Daniel.jpeg'

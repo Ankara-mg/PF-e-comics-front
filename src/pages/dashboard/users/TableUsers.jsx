@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from "react-redux";
 import { setUsersRol, setUsersActive } from "../../../redux/actions/admin";
 import { Card, Col, Row } from 'react-bootstrap';
@@ -18,7 +18,7 @@ const TableUsers = ({ data }) => {
     SetUserid(() => data.id)
   }
 
-  const handleSelect = (e) => {
+  const handleSelect = () => {
     const value = selectElement.current.value;
     const params = {
       "id_user": userid,

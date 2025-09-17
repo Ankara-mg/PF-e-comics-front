@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { NavLink, Link, Outlet } from 'react-router-dom'
 import {
   RiUser3Fill,
@@ -14,7 +14,7 @@ const DashboardNav = () => {
     let list = document.querySelectorAll('.navAdm ul li')
 
     list.forEach(elem => {
-      elem.addEventListener("click", (e) => {
+      elem.addEventListener("click", () => {
         elem.classList.add("selected")
         list.forEach(elem => {
           elem.classList.remove("selected")

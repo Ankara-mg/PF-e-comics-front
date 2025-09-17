@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPublishers, setPage } from '../../redux/actions/filters'
 // import { getAllVolumes } from "../../redux/actions/comics";
-import { filterPublishers, filterAD, filterForRelease, getAllVolumes } from "../../redux/actions/comics";
+import { filterPublishers, filterAD, getAllVolumes } from "../../redux/actions/comics";
 
 import "./Sidebar.css"
 
 
-const Sidebars = ({setCurrentPage}) => {
+const Sidebars = () => {
   const dispatch = useDispatch();
   const [/*order*/, setOrder] = useState('')
 
@@ -40,12 +40,6 @@ const Sidebars = ({setCurrentPage}) => {
     dispatch(getAllVolumes())
   }
 
-  // function handleFilterForRelease(e) {
-  //   e.preventDefault();
-  //   if(e.target.value === 'null') return
-  //   dispatch(filterForRelease(e.target.value));
-  //   // setCurrentPage(1);
-  // }
   return (
     <div style={{ height: "100px" }}>
       <select className='w-25 m-2 p-2 border border-white rounded' onChange={e => handlePublishers(e)}>
@@ -69,16 +63,3 @@ const Sidebars = ({setCurrentPage}) => {
 }
 
 export default Sidebars
-
-{/* <select onChange={(e) => handleFilterForRelease(e)}>
-  <option value="null">FILTER FOR RELEASE</option>
-  <option value="All">All</option>
-  <option value="post 2000`s">Release next 2000</option>
-  <option value="1990`s"> Release 90`s</option>
-  <option value="1980`s"> Release 80`s</option>
-  <option value="1970`s"> Release 70`s</option>
-  <option value="1960`s"> Release 60`s</option>
-  <option value="1950`s"> Release 50`s</option>
-  <option value="1940`s"> Release 40`s</option>
-  <option value="1930`s"> Release 30`s</option>
-</select> */}

@@ -35,7 +35,7 @@ export function getConcepts() {
 
 export function creategame(data) {
   return async function () {
-    const createUser = await axios.post(
+    await axios.post(
       "http://localhost:3000/publishers",
       data
     );

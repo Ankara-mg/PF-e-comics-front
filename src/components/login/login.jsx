@@ -1,8 +1,7 @@
-import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import './Login.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Col, Container, Row, Form } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import {useAuthContext} from '../../context/authContext'
@@ -12,11 +11,12 @@ const backendURL = import.meta.env.VITE_API;
 
 function validate(input) {
   let errors = {};
+  const regExp = /^(([^<>()[\].,;:\s@]+(\.[^<>()[\].,;:\s@]+)*)|(".+"))@(([^<>()[\].,;:\s@]+\.)+[^<>()[\].,;:\s@]{2,})$/i;
 
   if (!input.email) {
     errors.email = "El email es requerido"
   }
-  else if (!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(input.email)) {
+  else if (!regExp.test(input.email)) {
     errors.email = "correo no valido"
   }
   else if (!input.password) {
@@ -28,8 +28,6 @@ function validate(input) {
 function LoginApp() {
 
   const { login } = useAuthContext()
-  const navigate = useNavigate()
-
 
   const [errors, setErrors] = useState([""])
   const [input, setInput] = useState({
@@ -70,6 +68,7 @@ function LoginApp() {
       })
       login()
     } catch (error) {
+      console.error(error);
       Swal.fire({
         title: 'Error!',
         text: 'Incorrect user or password',

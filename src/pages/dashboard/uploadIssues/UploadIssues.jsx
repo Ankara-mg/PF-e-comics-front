@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComic } from "../../../redux/actions/admin";
 
@@ -9,7 +9,6 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
 import Button from 'react-bootstrap/Button';
-import { getCharacters } from "../../../redux/actions/filters";
 import "./UploadComic.css";
 
 const UploadComic = () => {

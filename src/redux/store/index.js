@@ -1,6 +1,3 @@
-// import { applyMiddleware, createStore, combineReducers } from 'redux';
-// import { composeWithDevTools } from '@redux-devtools/extension';
-import { thunk } from 'redux-thunk';
 import { configureStore } from '@reduxjs/toolkit';
 
 import comicsReducer from '../reducers/comicsReducer';
