@@ -24,7 +24,10 @@ export default [
     },
     rules: {
       "react/jsx-uses-vars": "warn",
+      "react/jsx-no-target-blank": "warn",
       "react/react-in-jsx-scope": "off",
+      "eqeqeq": "warn",
+      "no-lone-blocks": "warn"
     },
     settings: {
       react: {

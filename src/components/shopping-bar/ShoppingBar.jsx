@@ -27,7 +27,7 @@ const ShoppingBar = ({ price, comic }) => {
 
     let carrito
 
-    if (!localStorage.getItem('carrito') || localStorage.getItem('carrito') == 'null') {
+    if (!localStorage.getItem('carrito') || localStorage.getItem('carrito') === 'null') {
       carrito = []
       carrito.push(comic)
       dispatch(addToCart(comic))
