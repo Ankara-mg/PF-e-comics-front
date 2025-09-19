@@ -1,4 +1,3 @@
-import React from "react";
 import { ListGroup } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/actions/shop_favs_rating";
@@ -33,7 +32,7 @@ const Shop = () => {
       cart_shopping.map(p => dispatch(removeFromCart(p)))
     }
   }
-  const rol = JSON.stringify(localStorage.getItem("ROL"))
+
   let totalPrice = 0;
   return (
     <>

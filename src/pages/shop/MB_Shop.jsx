@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/actions/shop_favs_rating";
 import { Button, Col, Container, Row, Table } from 'react-bootstrap'
@@ -13,7 +12,7 @@ const ShoppingCart2 = () => {
   //JSON.parse(localStorage.getItem('carrito'))
   const dispatch = useDispatch()
   let totalPrice = 0;
-  const [compras, setCompras] = useState(false)
+  // const [compras, setCompras] = useState(false)
 
   const removeProduct = (issue) => {
     // var confirm = window.confirm(`Remove ${issue.name || 'this issue'} from the Cart?`)

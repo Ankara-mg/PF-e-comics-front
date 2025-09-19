@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions/shop_favs_rating";
-// import Favorites from "../../pages/favorites/Favorites";
+
 
 import { Col, Row } from 'react-bootstrap'
 
@@ -27,7 +27,7 @@ const ShoppingBar = ({ price, comic }) => {
 
     let carrito
 
-    if (!localStorage.getItem('carrito') || localStorage.getItem('carrito') == 'null') {
+    if (!localStorage.getItem('carrito') || localStorage.getItem('carrito') === 'null') {
       carrito = []
       carrito.push(comic)
       dispatch(addToCart(comic))

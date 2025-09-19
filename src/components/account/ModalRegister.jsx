@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import Modal from "react-bootstrap/Modal";
-//import Tabslogin from "./Tabslogin";
 import "./ModalLogin.css"
 import { useEffect } from "react";
 import Register from "../login/Register";

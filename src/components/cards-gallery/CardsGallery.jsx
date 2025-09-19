@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllVolumes, reset_comicState } from "../../redux/actions/comics";
 import { setShoppingCart } from "../../redux/actions/shop_favs_rating";
 import { setPage } from "../../redux/actions/filters";
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
-import Loading from "../loading/Loading";
+import Spinner from 'react-bootstrap/Spinner';
 import "./CardsGallery.css"
 
 const CardsGallery = () => {
@@ -22,9 +22,9 @@ const CardsGallery = () => {
 
   /** ------- Para traer el carrito desde el back ----- */
   let userId = localStorage.getItem("id")
-  
+
   useEffect(() => {
-    if(userId){
+    if (userId) {
       dispatch(setShoppingCart(userId))
     }
   }, [dispatch, userId])
@@ -52,17 +52,18 @@ const CardsGallery = () => {
         paginado={paginado}
         currentPage={currentPage}
       />
-      <div className='pos-loading-gallery'>
-        <Loading data={comics} state={loading_state} />
-      </div>
       {
-        comics.length > 0 && !loading_state ?
-          currentComic.map(c => (
-            <ComicCard key={c.id} data={c} />
-          )) :
-          (<div style={{ height: '800px' }}>
-
-          </div>)
+        loading_state ? (
+          <div className='pos-loading-gallery'>
+            <Spinner animation="border" variant="danger" />
+          </div>
+        ) : (
+          comics.length > 0 ?
+            currentComic.map(c => (
+              <ComicCard key={c.id} data={c} />
+            )) :
+            (<div style={{ height: '800px' }} />)
+        )
       }
     </>
   )

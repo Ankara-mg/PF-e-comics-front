@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from "react-redux";
 import Carousel from 'react-bootstrap/Carousel';
 import hero1 from "../../assets/intro1.jpg"
@@ -22,7 +22,7 @@ const ControlledCarousel = () => {
   const listImg_item4 = [hero1]
   let time_iterval = 4000
 
-  const handleSelect = (selectedIndex, e) => {
+  const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
 

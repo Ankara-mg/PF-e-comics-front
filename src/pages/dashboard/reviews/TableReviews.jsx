@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch } from "react-redux";
 import { deleteReview } from "../../../redux/actions/admin";
 import { useNavigate } from 'react-router-dom'

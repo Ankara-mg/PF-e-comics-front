@@ -1,4 +1,3 @@
-import React from 'react'
 import "./LandingPage.css"
 import { Link } from 'react-router-dom'
 import logo from '../../assets/LogoRed2.png'
@@ -17,7 +16,6 @@ import patternYellow from '../../assets/Comics/patternYellow.jpg'
 import patternBlue from '../../assets/Comics/patternBlue.jpg'
 
 const LandingPage = () => {
-const rol = JSON.parse(localStorage.getItem("rol"))
 
   return (
     <>

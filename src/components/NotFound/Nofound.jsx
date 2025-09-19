@@ -1,4 +1,3 @@
-import { Navigate, Outlet } from "react-router-dom";
 import './notFound.css'
 import { Link } from "react-router-dom";
 

@@ -1,7 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import React from 'react';
 
 const ToolTip = () => {
   return (

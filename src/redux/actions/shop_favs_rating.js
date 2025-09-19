@@ -98,7 +98,7 @@ export function processPayment(comic, card, status){
 
 export function addFavorite(issuesId, userId) {
   // const token = JSON.parse(localStorage.getItem("token"))
-  return async (dispatch) => {
+  return async () => {
     await axios({
       method: 'POST',
       url: `${backendURL}/fav`,
@@ -113,7 +113,7 @@ export function addFavorite(issuesId, userId) {
 
 export function removeFavorite(issuesId, userId) {
   // const token = JSON.parse(localStorage.getItem("token"))
-  return async (dispatch) => {
+  return async () => {
     await axios({
       method: 'DELETE',
       url: `${backendURL}/fav`,

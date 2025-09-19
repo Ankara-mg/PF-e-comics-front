@@ -1,15 +1,14 @@
-import React from "react";
-import { useSelector } from "react-redux";
-
-import NavBar from "../../components/navBar/Navbar";
-import Carrousel from "../../components/carrousel/Carrousel";
-import Sidebars from "../../components/sidebar/Sidebar";
-import CardsGallery from "../../components/cards-gallery/CardsGallery";
-import Footer from "../../components/footer/Footer";
-import { Col, Row } from "react-bootstrap";
 import "./Home.css"
 
+import { useSelector } from "react-redux";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 
+import NavBar from "@components/navBar/Navbar";
+import Carrousel from "@components/carrousel/Carrousel";
+import Sidebars from "@components/sidebar/Sidebar";
+import CardsGallery from "@components/cards-gallery/CardsGallery";
+import Footer from "@components/footer/Footer";
+import WhisperBubble from "@components/WhisperBubble/WhisperBubble";
 
 const Home = () => {
   let { isWaking } = useSelector(state => state.comicsReducer);
@@ -25,7 +24,6 @@ const Home = () => {
         <main className="main">
           <Row>
             <Carrousel />
-
             <Sidebars />
           </Row>
           <Row className="mt-5">
@@ -34,11 +32,16 @@ const Home = () => {
                 !isWaking ?
                   <CardsGallery />
                   :
-                  <>Waking up server, this might take a moment...</>
+                  <Container className="w-75">
+                    <WhisperBubble className="mb-5 container d-flex justify-content-center">
+                      <Spinner animation="border" variant="danger" />
+                      <h2>Waking up server... </h2>
+                      <h3>This might take a moment...</h3>
+                    </WhisperBubble>
+                  </Container>
               }
             </Col>
           </Row>
-
         </main>
         <Footer />
       </div>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BsLinkedin, BsGithub } from 'react-icons/bs'
 import Sergio from '../../assets/devs/SergioFoto.jpeg'
 import Daniel from '../../assets/devs/Daniel.jpeg'
@@ -39,10 +38,10 @@ const Footer = () => {
                     <h6>Daniel Gonzalez Avila (bode)</h6>
                     <img src={Daniel} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/Dagoav' target="_blank">
+                      <a className="github" href='https://github.com/Dagoav' target="_blank" rel="noreferrer">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/daniel-gonzalez-avila-75770b234/' target="_blank">
+                      <a href='https://www.linkedin.com/in/daniel-gonzalez-avila-75770b234/' target="_blank" rel="noreferrer">
                         <BsLinkedin />
                       </a>
                     </div>
@@ -52,10 +51,10 @@ const Footer = () => {
                     <h6>Jorge Alejandro Gonzales Firigua (cizañas)</h6>
                     <img src={Jorge} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/alejo10913' target="_blank">
+                      <a className="github" href='https://github.com/alejo10913' target="_blank" rel="noreferrer">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/jorge-alejandro-gonzález-58398a4b' target="_blank">
+                      <a href='https://www.linkedin.com/in/jorge-alejandro-gonzález-58398a4b' target="_blank" rel="noreferrer">
                         <BsLinkedin />
                       </a>
                     </div>
@@ -65,10 +64,10 @@ const Footer = () => {
                     <h6>Juan Carlos Ramirez Pinilla (capo de front)</h6>
                     <img src={Juan} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/juank27ra' target="_blank">
+                      <a className="github" href='https://github.com/juank27ra' target="_blank" rel="noreferrer">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/juan-carlos-ramirez-pinilla-a8518077/' target="_blank">
+                      <a href='https://www.linkedin.com/in/juan-carlos-ramirez-pinilla-a8518077/' target="_blank" rel="noreferrer">
                         <BsLinkedin />
                       </a>
                     </div>
@@ -78,10 +77,10 @@ const Footer = () => {
                     <h6>Antonella Sol Román (la gata del código)</h6>
                     <img src={Sol} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/Ankara-mg' target="_blank">
+                      <a className="github" href='https://github.com/Ankara-mg' target="_blank" rel="noreferrer">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/sol-rom%C3%A1n-9a4b55221/' target="_blank">
+                      <a href='https://www.linkedin.com/in/sol-rom%C3%A1n-9a4b55221/' target="_blank" rel="noreferrer">
                         <BsLinkedin />
                       </a>
                     </div>
@@ -91,10 +90,10 @@ const Footer = () => {
                     <h6>Johan Stiven Turmeque (404)</h6>
                     <img src={Johan} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/turmeque' target="_blank">
+                      <a className="github" href='https://github.com/turmeque' target="_blank" rel="noreferrer">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/sergio-moyano-a-1425b6a/' target="_blank">
+                      <a href='https://www.linkedin.com/in/sergio-moyano-a-1425b6a/' target="_blank" rel="noreferrer">
                         <BsLinkedin />
                       </a>
                     </div>
@@ -104,10 +103,10 @@ const Footer = () => {
                     <h6>Sergio Daniel Moyano (Woky)</h6>
                     <img src={Sergio} className="imgRedonda mt-1" alt='' />
                     <div className="containerIcons">
-                      <a className="github" href='https://github.com/woky88' target="_blank">
+                      <a className="github" href='https://github.com/woky88' target="_blank" rel="noreferrer">
                         <BsGithub />
                       </a>
-                      <a href='https://www.linkedin.com/in/sergio-moyano07' target="_blank">
+                      <a href='https://www.linkedin.com/in/sergio-moyano07' target="_blank" rel="noreferrer">
                         <BsLinkedin />
                       </a>
                     </div>

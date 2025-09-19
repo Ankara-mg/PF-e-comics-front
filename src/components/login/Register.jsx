@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ import "./Register.css";
 
 function validate(input) {
   let errors = {};
+  const regExp = /^(([^<>()[\].,;:\s@]+(\.[^<>()[\].,;:\s@]+)*)|(".+"))@(([^<>()[\].,;:\s@]+\.)+[^<>()[\].,;:\s@]{2,})$/i;
 
   if (!input.username) {
     errors.username = "El nombre de usuario es requerido";
@@ -19,7 +20,7 @@ function validate(input) {
   if (!input.email) {
     errors.email = "El email es requerido";
   } else if (
-    !/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(input.email)) {
+    !regExp.test(input.email)) {
     errors.email = "correo no valido";
   }
 
@@ -61,24 +62,24 @@ function Register() {
 
   const handleSubmit = async (e) => {
     // try {
-      e.preventDefault();
-      dispatch(registerUser(input))
-      setInput({
-        username: "",
-        email: "",
-        password: "",
-        repeatpassword: "",
-      })
+    e.preventDefault();
+    dispatch(registerUser(input))
+    setInput({
+      username: "",
+      email: "",
+      password: "",
+      repeatpassword: "",
+    })
 
-      Swal.fire({
-        icon: 'success',
-        title: 'Registered user successfully',
-        showConfirmButton: false,
-        timer: 1500
-      })
-      navigate('/login')
-     
-    
+    Swal.fire({
+      icon: 'success',
+      title: 'Registered user successfully',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    navigate('/login')
+
+
     // } catch (error) {
     //   Swal.fire({
     //     title: 'Error!',
@@ -108,16 +109,16 @@ function Register() {
                 <FaUser className="me-2" />
               </InputGroup.Text>
 
-            <Form.Control 
-              value={input.username}
-              name="username"
-              onChange={handleChange}
-              wrapperClass="mb-4"
-              label="Username"
-              id="formControlLg"
-              type="user"
-              size="lg"
-            />
+              <Form.Control
+                value={input.username}
+                name="username"
+                onChange={handleChange}
+                wrapperClass="mb-4"
+                label="Username"
+                id="formControlLg"
+                type="user"
+                size="lg"
+              />
             </InputGroup>
             {errors && errors.username ? (
               <span className="text-danger" > {errors.username} </span>
@@ -129,13 +130,13 @@ function Register() {
               <InputGroup.Text>
                 <FaEnvelope />
               </InputGroup.Text>
-            <Form.Control
-              value={input.email}
-              name="email"
-              onChange={handleChange}
-              placeholder="Email"
-              type="email"
-            />
+              <Form.Control
+                value={input.email}
+                name="email"
+                onChange={handleChange}
+                placeholder="Email"
+                type="email"
+              />
             </InputGroup>
             {input.email.length && errors && errors.email ? (
               <span className="text-danger "> {errors.email} </span>
@@ -147,13 +148,13 @@ function Register() {
               <InputGroup.Text>
                 <FaLock />
               </InputGroup.Text>
-            <Form.Control
-              value={input.password}
-              name="password"
-              onChange={handleChange}
-              placeholder="Password"
-              type="password"
-            />
+              <Form.Control
+                value={input.password}
+                name="password"
+                onChange={handleChange}
+                placeholder="Password"
+                type="password"
+              />
             </InputGroup>
             {input.password.length && errors && errors.password ? (
               <span className="text-danger" > {errors.password} </span>
@@ -165,13 +166,13 @@ function Register() {
               <InputGroup.Text>
                 <FaLock />
               </InputGroup.Text>
-            <Form.Control
-              value={input.repeatpassword}
-              name="repeatpassword"
-              onChange={handleChange}
-              placeholder="Verify your password"
-              type="password"
-            />
+              <Form.Control
+                value={input.repeatpassword}
+                name="repeatpassword"
+                onChange={handleChange}
+                placeholder="Verify your password"
+                type="password"
+              />
             </InputGroup>
             {input.repeatpassword.length && errors && errors.repeatpassword ? (
               <span className="text-danger"> {errors.repeatpassword} </span>

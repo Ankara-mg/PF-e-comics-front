@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import { useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast';
 
 function DismissibleExample() {
   const [showA, setShowA] = useState(true);
-  const [showB, setShowB] = useState(true);
+  // const [showB, setShowB] = useState(true);
 
   const toggleShowA = () => setShowA(!showA);
-  const toggleShowB = () => setShowB(!showB);
+  // const toggleShowB = () => setShowB(!showB);
 
   return (
     <Row onClick={toggleShowA}>

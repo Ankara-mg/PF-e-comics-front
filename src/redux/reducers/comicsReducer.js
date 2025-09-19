@@ -79,15 +79,14 @@ const comicsReducer = (state = initialState, action) => {
         comics_filter: [...action.payload]
       }
 
-    case "FILTER_FOR_RELEASE":
-      const filterR = state.comics_filter
-      const filterRelease = action.payload === "1990"
-      // comics.filter(v => v.release) : filterR.filter(v => v.release !== "1943-01-01")
+    case "FILTER_FOR_RELEASE": {
+      const filterRelease = action.payload === "1990"    
   
       return {
         ...state,
         comics: filterRelease
-      }
+      };
+    }
 
 
     default: return state

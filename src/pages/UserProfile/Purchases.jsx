@@ -1,10 +1,8 @@
 
 
-import React, {useEffect} from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../redux/actions/shop_favs_rating";
 import { getAllPurchases } from "../../redux/actions/shop_favs_rating";
-import { Link } from "react-router-dom";
 import NavBar from "../../components/navBar/Navbar";
 import "./purchase.css"
 import { Col, Container, Row, Table } from "react-bootstrap";
