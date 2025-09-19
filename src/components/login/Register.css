@@ -13,11 +13,11 @@
   height: 100%;
   }
 }
-.text-danger{
+/* .text-danger{
   position: absolute;
   margin-top: 55px;
   margin-left: 35px;
-}
+} */
 .registerhome{
   display: flex;
   /* justify-content: center; */

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { volumeDetail } from "../../redux/actions/comics";
 import { useNavigate, useParams } from "react-router-dom";
-import Loading from "../loading/Loading";
+// import Loading from "../loading/Loading";
 import NavBar from '../navBar/Navbar'
 import Issues from '../issues/Issues';
 
@@ -70,7 +70,8 @@ const CardDetail = () => {
             </div>
           </div>) :
           (<div className='pos-loading'>
-            < Loading data={Object.entries(comic)} state={true} timeWait={4000} />
+            Loading...
+            {/* <Loading data={Object.entries(comic)} state={true} timeWait={4000} /> */}
           </div>
           )
         }

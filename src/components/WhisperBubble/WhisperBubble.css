@@ -1,0 +1,25 @@
+.whisper-bubble {
+  fill: white;
+  stroke: #4b4b4bff;
+  stroke-width: 4;
+  stroke-linejoin: bevel;
+  stroke-dasharray: 20, 10;
+  vector-effect: non-scaling-stroke;
+}
+
+.whisper-bubble-content {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  letter-spacing: 1px;
+  color: #4b4b4bff;
+  text-align: center;
+  font-size: clamp(12px, 2vw, 32px);
+  font-weight: bold;
+  font-style: italic;
+}
+
+.whisper-bubble-content p {
+  font-family: 'Arial Black', Arial, sans-serif;
+}

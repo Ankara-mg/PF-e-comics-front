@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getIssues } from "../../redux/actions/comics";
-import { sortIssues } from '../../redux/actions/filters';
-import { addToCart } from "../../redux/actions/shop_favs_rating";
-import Loading from "../loading/Loading";
-import CardIssue from './CardIssue';
+import Spinner from 'react-bootstrap/Spinner';
 
+import CardIssue from './CardIssue';
+import ShoutingBubble from '@components/ShoutingBubble/ShoutingBubble';
+
+import { getIssues } from "@redux/actions/comics";
+import { sortIssues } from '@redux/actions/filters';
+import { addToCart } from "@redux/actions/shop_favs_rating";
 
 function Issue({ volume_id }) {
   const dispatch = useDispatch();
@@ -80,14 +82,21 @@ function Issue({ volume_id }) {
           <option value='priceDesc'>Price Descending</option>
         </select>
       </div>
-      <div className='pos-loading-issues'>
-        <Loading data={issues} state={loading_state} timeWait={5000} />
-      </div>
       {
-        issues.length > 0 && !loading_state &&
-        issues.map(issue => (
-          <CardIssue key={issue.id} data={issue} />
-        ))
+        loading_state ? (
+          <div className='pos-loading-issues'>
+            <Spinner animation="border" variant="danger" />
+          </div>
+        ) : (
+          issues.length > 0 ?
+            issues.map(issue => (
+              <CardIssue key={issue.id} data={issue} />
+            ))
+            :
+            <ShoutingBubble>
+              <p>Error loading comic issues.</p>
+            </ShoutingBubble>
+        )
       }
     </div>
   );
