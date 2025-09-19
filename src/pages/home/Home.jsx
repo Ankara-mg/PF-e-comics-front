@@ -29,7 +29,7 @@ const Home = () => {
           <Row className="mt-5">
             <Col md={9} className="container" >
               {
-                isWaking ?
+                !isWaking ?
                   <CardsGallery />
                   :
                   <Container className="w-75">
