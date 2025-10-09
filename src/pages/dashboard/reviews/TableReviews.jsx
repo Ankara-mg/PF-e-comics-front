@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deleteReview } from "../../../redux/actions/admin";
+import { deleteRating } from "@redux/actions/admin";
 import { useNavigate } from 'react-router-dom'
 import { Card, Col, Row } from 'react-bootstrap';
 import "./TableReviews.css"
@@ -15,7 +15,7 @@ const TableReviews = ({ data }) => {
     const params = {
       "id_review": data.id,
     }
-    dispatch(deleteReview(params))
+    dispatch(deleteRating(params))
     navigate(0);
   };
 

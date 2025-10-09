@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { removeFavorite, getAllfavoritesDb} from '../../redux/actions/shop_favs_rating'
+import { removeFavorite, getFavoriteList} from '@redux/actions/favorites'
 import { useDispatch, useSelector } from 'react-redux'
 import NavBar from "../../components/navBar/Navbar";
 import "./Favorites.css"
@@ -7,17 +7,17 @@ import "./Favorites.css"
 export default function Favorites() {
     
     const dispatch = useDispatch()
-    const favourite = useSelector((state) => state.shop_fav_rating.favourite)
+    const favourite = useSelector((state) => state.favorites.favorites)
     const userId = JSON.parse(localStorage.getItem("id"))
 
     useEffect(() => {
-      dispatch(getAllfavoritesDb(userId))
+      dispatch(getFavoriteList(userId))
     }, [dispatch, userId])
 
     
     const removeHandler = (comic) => {
         dispatch(removeFavorite(comic.id, userId)) 
-        dispatch(getAllfavoritesDb(userId))
+        dispatch(getFavoriteList(userId))
     }
 
     return (

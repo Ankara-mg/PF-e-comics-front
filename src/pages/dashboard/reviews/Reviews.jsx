@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getAllReviews } from "../../../redux/actions/admin";
+import { getAllRatings } from "@redux/actions/admin";
 import TableReviews from './TableReviews';
 
 const Reviews = () => {
   const dispatch = useDispatch();
-  const reviews = useSelector((state) => state.admin.reviews);
+  const reviews = useSelector((state) => state.ratings.ratings);
 
   useEffect(() => {
-    dispatch(getAllReviews())
+    dispatch(getAllRatings())
   }, [dispatch])
 
   return (

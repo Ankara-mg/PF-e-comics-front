@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useDispatch } from "react-redux";
-import { setUsersRol, setUsersActive } from "../../../redux/actions/admin";
+import { changeUserRole, setUserActive } from "@redux/actions/admin";
 import { Card, Col, Row } from 'react-bootstrap';
 import "./TableUsers.css"
 
@@ -25,7 +25,7 @@ const TableUsers = ({ data }) => {
       "rol": value
     }
    
-    dispatch(setUsersRol(params))
+    dispatch(changeUserRole(params))
   };
 
   const handleToggle = (e) => {
@@ -35,7 +35,7 @@ const TableUsers = ({ data }) => {
       "active": checkbox
     }
 
-    dispatch(setUsersActive(params))
+    dispatch(setUserActive(params))
   }
 
   return (

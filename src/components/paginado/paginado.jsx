@@ -7,7 +7,7 @@ const Paginado = ({ comicPerPage, allComics, paginado, currentPage }) => {
   let Paginas = Math.ceil(allComics / comicPerPage)
 
   const [focus, setFocus] = useState(0);
-  let currentPageState = useSelector(state => state.filters.currentPage);
+  let currentPageState = useSelector(state => state.global.currentPage);
 
   useEffect(() => {
     setFocus(currentPageState);

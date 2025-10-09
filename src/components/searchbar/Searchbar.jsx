@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllVolumes, searchComic } from "../../redux/actions/comics";
-import { setPage } from "../../redux/actions/filters";
-import { setLoading } from "../../redux/actions/setParams";
+import { getAllComics, searchComic } from "@redux/actions/comics";
+import { setCurrentPage, setLoading } from "@redux/reducers/global";
 
 import "./Searchbar.css"
 
@@ -26,13 +25,13 @@ const Searchbar = () => {
   // search
   const handleSearch = () => {
     if (inputValue.trim() === "") {
-      dispatch(getAllVolumes());
+      dispatch(getAllComics());
 
     }
     else {
       dispatch(searchComic(inputValue));
       dispatch(setLoading(true));
-      dispatch(setPage(1))
+      dispatch(setCurrentPage(1))
       // se añade para que cuando se busque desde el panel de usuario se redi
       navigate(rol ? '/user/home' : '/home')
     }
@@ -40,7 +39,7 @@ const Searchbar = () => {
 
   const clearText = () => {
     setInputValue(() => "");
-    dispatch(getAllVolumes());
+    dispatch(getAllComics());
   };
 
   return (

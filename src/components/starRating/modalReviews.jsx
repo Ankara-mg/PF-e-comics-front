@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import "./modalReviews.css"
 import StarRating from './starRating';
-import { getReviews } from '../../redux/actions/reviews'
+import { getIssueRatings } from '@redux/actions/ratings'
 
 const ModalReviews = ({ data, theme }) => {
   const dispatch = useDispatch();
@@ -14,10 +14,10 @@ const ModalReviews = ({ data, theme }) => {
   }
 
   useEffect(() => {
-    dispatch(getReviews(datitos))
+    dispatch(getIssueRatings(datitos))
   }, [dispatch])
 
-  let reviews = useSelector(state => state.reviews)
+  let reviews = useSelector(state => state.ratings.ratings)
 
   const [show, setShow] = useState(false);
 

@@ -1,103 +1,102 @@
-import axios from "axios";
+import { api } from "@redux/helpers";
+import { setUsers } from "@redux/reducers/admin";
+import { setLoading, setErrors } from "@redux/reducers/global";
+import { setRatings } from "@redux/reducers/ratings";
 
-const backendURL = import.meta.env.VITE_API;
-
-export const getUsers = () => {
+const getUsers = () => {
   return async (dispatch) => {
-    const users = await axios({
-      method: 'get',
-      url: `${backendURL}/admin/users`
-    })
-    return dispatch({
-      type: "GET_USERS",
-      payload: users.data
-    })
+    dispatch(setLoading(true));
+    try {
+      const users = await api("get", "/admin/user-list");
+      dispatch(setUsers(users));
+    } catch (error) {
+      dispatch(setErrors({ fetchUsers: error }));
+    } finally {
+      dispatch(setLoading(false));
+    }
   }
 }
 
-export const getAllReviews = () => {
+const getAllRatings = () => {
   return async (dispatch) => {
-    const reviews = await axios({
-      method: 'get',
-      url: `${backendURL}/admin/reviews`
-    })
-    return dispatch({
-      type: "GET_REVIEWS",
-      payload: reviews.data
-    })
+    dispatch(setLoading(true));
+    try {
+      const ratings = await api("get", "/ratings");
+      dispatch(setRatings(ratings));
+    } catch (error) {
+      dispatch(setErrors({ fetchRatings: error }));
+    } finally {
+      dispatch(setLoading(false));
+    }
   }
 }
 
-export const deleteReview = (body) => {
-  return async (dispatch) => {
-    const reviews = await axios({
-      method: 'delete',
-      url: `${backendURL}/admin/reviews`,
-      data: body
-    })
 
-    getAllReviews()
-    return dispatch({
-      type: "DELETE_REVIEW",
-      payload: reviews.data
-    })
+// TODO - Mover funciones a los componentes.
+const deleteRating = (ratingId) => {
+  return async (dispatch) => {
+    dispatch(setLoading(true));
+    try {
+      await api("delete", `/admin/ratings/${ratingId}`);
+      getAllRatings();
+    } catch (error) {
+      dispatch(setErrors({ deleteRating: error }));
+    } finally {
+      dispatch(setLoading(false));
+    }
   }
 }
 
-export const setUsersRol = (params) => {
+const changeUserRole = (userId, role) => {
   return async (dispatch) => {
-    const users = await axios({
-      method: 'put',
-      url: `${backendURL}/admin/users/rol`,
-      data: params
-    })
-    return dispatch({
-      type: "ROL_USERS",
-      payload: users.data
-    })
-  }
-}
-export const setUsersActive = (params) => {
-  return async (dispatch) => {
-    const users = await axios({
-      method: 'put',
-      url: `${backendURL}/admin/users/active`,
-      data: params
-    })
-    return dispatch({
-      type: "ACTIVE_USERS",
-      payload: users.data
-    })
+    dispatch(setLoading(true));
+    try {
+      await api("put", `/admin/user-list/${userId}/role`, role);
+    } catch (error) {
+      dispatch(setErrors({ updateUser: error }));
+    } finally {
+      dispatch(setLoading(false));
+    }
   }
 }
 
-export const addComic = (body) => {
+const setUserActive = (userId, status) => {
   return async (dispatch) => {
-    const comic_info = await axios({
-      method: 'post',
-      url: `${backendURL}/comics`,
-      data: body
-    })
-    return dispatch({
-      type: "POST_COMIC",
-      payload: comic_info.data
-    })
+    dispatch(setLoading(true));
+    try {
+      await api("put", `/admin/user-list/${userId}/active`, status);
+    } catch (error) {
+      dispatch(setErrors({ updateUser: error }));
+    } finally {
+      dispatch(setLoading(false));
+    }
   }
 }
 
-export const sendEmail = (listEmails) => {
+const addComic = (data) => {
   return async (dispatch) => {
-    const comic_info = await axios({
-      method: 'post',
-      url: `${backendURL}/admin/sendEmail`,
-      data: {
-        email: listEmails
-      }
-    })
-    return dispatch({
-      type: "EMAIL",
-      payload: comic_info.data
-    })
+    dispatch(setLoading(true));
+    try {
+      await api("post", "/comics", { comicData: data });
+    } catch (error) {
+      dispatch(setErrors({ newComic: error }));
+    } finally {
+      dispatch(setLoading(false));
+    }
   }
 }
 
+const sendEmail = (email) => {
+  return async (dispatch) => {
+    dispatch(setLoading(true));
+    try {
+      await api("post", "/admin/send-email", { email_address: email });
+    } catch (error) {
+      dispatch(setErrors({ sendEmail: error }));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+}
+
+export { getUsers, getAllRatings, deleteRating, changeUserRole, setUserActive, addComic, sendEmail };

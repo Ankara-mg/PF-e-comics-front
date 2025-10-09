@@ -1,40 +1,31 @@
-import axios from "axios";
+import { api } from "@redux/helpers";
+import { setLoading, setWaking, setErrors } from "@redux/reducers/global";
+import { setComics, setOneComic, clearState, setFilteredComics } from "@redux/reducers/comics";
 
-const backendURL = import.meta.env.VITE_API;
+export const getAllComics = () => {
+  const start = Date.now();
+  const maxDuration = 60000; // 1 minute
 
-export const getAllVolumes = () => {  
-  // const token = JSON.parse(localStorage.getItem("token"))
   return async (dispatch) => {
-    dispatch({ type: "SET_LOADING", payload: true });
-
-    const wakeTimeout = setTimeout(() => {
-      dispatch({ type: "SHOW_WAKEUP_MESSAGE" });
-    }, 2000);
+    dispatch(setLoading(true));
 
     const maxRetries = 3;
     let retries = 0;
 
-    while (retries < maxRetries) {
-      try {
-        const volumes = await axios({
-          method: 'GET',
-          url: `${backendURL}/comics`,
-          timeout: 10000,
-        });
+    const wakeTimeout = setTimeout(() => {
+      dispatch(setWaking(true));
+    }, 2000);
 
-        clearTimeout(wakeTimeout);
-        dispatch({ type: "SET_LOADING", payload: false });
-        dispatch({
-          type: "GET_ALL_COMICS",
-          payload: volumes.data
-        });
+    while (retries < maxRetries && (Date.now() - start) < maxDuration) {
+      try {
+        const comics = await api("get", "/comics", null, { timeout: 10000 });
+        dispatch(setComics(comics));
         return;
 
       } catch (error) {
         retries++;
         if (retries >= maxRetries) {
-          clearTimeout(wakeTimeout);
-          dispatch({ type: "SET_LOADING", payload: false });
+          dispatch(setErrors({ fetchComics: error }));
           console.error("Failed to fetch comics:", error.message);
           return;
         }
@@ -42,108 +33,65 @@ export const getAllVolumes = () => {
         await new Promise(resolve => setTimeout(resolve, Math.pow(2, retries) * 1000));
       }
     }
+
+    clearTimeout(wakeTimeout);
+    dispatch(setLoading(false));
+    dispatch(setWaking(false));
   };
 };
 
-export const volumeDetail = (id) => {
+export const getComicDetail = (comicId) => {
   return async (dispatch) => {
-    const volume = await axios({
-      method: 'get',
-      url: `${backendURL}/comics/${String(id)}`,
-    })
-    return dispatch({
-      type: "GET_COMIC",
-      payload: volume.data
-    })
-  }
-}
-
-export const getIssues = (id) => {
-  return async (dispatch) => {
-    let ratings = null
+    dispatch(setLoading(true));
     try {
-      const issues = await axios({
-        method: 'get',
-        url: `${backendURL}/comics/issues/${id}`,
-      })
-
-      if (issues) {
-        ratings = await axios({
-          method: 'get',
-          url: `${backendURL}/comics/issues/rating/${id}`,
-        })
-      }
-
-      return dispatch({
-        type: "GET_ISSUES",
-        payload: ratings.data
-      })
+      const comic = await api("get", `/comics/${comicId}`);
+      console.log("COMIC - ", comic)
+      dispatch(setOneComic(comic));
     } catch (error) {
-      console.log(error);
+      dispatch(setErrors({ fetchComic: error }));
+    } finally {
+      dispatch(setLoading(false));
     }
   }
 }
 
-export const searchComic = (volume_name) => {
+export const searchComic = (comicName) => {
   return async (dispatch) => {
-    const comics = await axios({
-      method: 'get',
-      url: `${backendURL}/comics/search?name=${volume_name}`
-    })
-    return dispatch({
-      type: "SEARCH_COMICS",
-      payload: comics.data
-    })
+    dispatch(setLoading(true));
+    try {
+      const comics = await api("get", `/comics/search?name=${comicName}`);
+      dispatch(setFilteredComics(comics));
+    } catch (error) {
+      setErrors({ fetchComics: error });
+    } finally {
+      dispatch(setLoading(false));
+    }
   }
 }
 
-export const reset_comicState = (payload) => {
-  return {
-    type: "RESET_STATE",
-    payload
-  }
-}
-
-export function filterPublishers(payload, comics) {
+export function filterByPublisher(publisherName, comicList) {
   return (dispatch) => {
-
-    const allpubli = comics
-    const filterByP = allpubli.filter(p => {
-      if(!p.publisher) return undefined
-        return p.publisher.includes(payload)
-    })
-
-    return dispatch ({
-    type: "FILTER_COMIC_FOR_PUBLISHERS",
-    payload: filterByP
-      })
-    }}
- 
-export function filterAD(order, comics) {
-  const sortedArray = order === 'Asc' ?
-        comics.sort((a, b) => {
-          if (a.name > b.name)return 1;
-          if (b.name > a.name)return -1;
-          return 0;
-        }) :
-        comics.sort(function(a, b) {
-          if (a.name > b.name)return -1;
-          if (b.name > a.name)return 1;
-          return 0;
-        })
-    return (dispatch) => {
-      return dispatch({
-        type: "ORDER_NAME",
-        payload: sortedArray
-      })
-    }
+    const filteredComics = comicList.filter(c => c.publisher?.includes(publisherName));
+    dispatch(setFilteredComics(filteredComics));
   }
+}
 
-export function filterForRelease(payload) {
-  payload.slice(0, 10)
-      return {
-        type: "FILTER_FOR_RELEASE",
-        payload
-      }
-    }
+export function sortByName(order, comicList) {
+  const sortedComics = [...comicList];
 
+  return (dispatch) => {
+    sortedComics.sort((a, b) => {
+      if (a.name > b.name) return order === "Asc" ? 1 : -1;
+      if (b.name > a.name) return order === "Asc" ? -1 : 1;
+      return 0;
+    });
+
+    dispatch(setFilteredComics(sortedComics));
+  }
+}
+
+export const resetComics = () => {
+  return (dispatch) => {
+    dispatch(clearState());
+  }
+}

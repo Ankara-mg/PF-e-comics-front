@@ -14,7 +14,7 @@ import "./UploadComic.css";
 
 const UploadComic = () => {
   const dispatch = useDispatch();
-  const comic_info = useSelector((state) => state.admin.comic_info);
+  const comic_info = useSelector((state) => state.admin.comicInfo);
   const [validated, setValidated] = useState(false);
   const [show, setShow] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm();

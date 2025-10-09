@@ -5,16 +5,15 @@ import Spinner from 'react-bootstrap/Spinner';
 import CardIssue from './CardIssue';
 import ShoutingBubble from '@components/ShoutingBubble/ShoutingBubble';
 
-import { getIssues } from "@redux/actions/comics";
-import { sortIssues } from '@redux/actions/filters';
-import { addToCart } from "@redux/actions/shop_favs_rating";
+import { sortIssues, getIssues } from '@redux/actions/issues';
+import { addToCart } from "@redux/actions/shop";
 
 function Issue({ volume_id }) {
   const dispatch = useDispatch();
-  const issuesDefault = useSelector((state) => state.comicsReducer.issues);
-  const issues = useSelector((state) => state.comicsReducer.issues_sorting)
-  let loading_state = useSelector((state) => state.comicsReducer.loading_issues);
-  const shopping_cart = useSelector(state => state.shop_fav_rating.cart_shopping);
+  const issuesDefault = useSelector((state) => state.comics.issues);
+  const issues = useSelector((state) => state.comics.sortedIssues)
+  let loading_state = useSelector((state) => state.global.loading);
+  const shopping_cart = useSelector(state => state.shop.shoppingCart);
   useEffect(() => {
     dispatch(getIssues(volume_id))
   }, [dispatch, volume_id])
@@ -25,10 +24,10 @@ function Issue({ volume_id }) {
 
     let carrito
 
-    if (!localStorage.getItem('carrito') || localStorage.getItem('carrito') === 'null') {
+    if (!localStorage.getItem('cart') || localStorage.getItem('cart') === 'null') {
       carrito = []
     } else {
-      carrito = [...JSON.parse(localStorage.getItem('carrito'))]
+      carrito = [...JSON.parse(localStorage.getItem('cart'))]
     }
 
     issues.forEach(issue => {
@@ -39,7 +38,7 @@ function Issue({ volume_id }) {
       }
     })
 
-    localStorage.setItem("carrito", JSON.stringify(carrito))
+    localStorage.setItem("cart", JSON.stringify(carrito))
   }
 
   /**-------------------------------------------------------------------------- */

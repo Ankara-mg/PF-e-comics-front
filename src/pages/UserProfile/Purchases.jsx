@@ -1,19 +1,19 @@
 
 
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllPurchases } from "../../redux/actions/shop_favs_rating";
+import { useSelector, /* useDispatch */ } from "react-redux";
+// import { getAllPurchases } from "../../redux/actions/shop_favs_rating";
 import NavBar from "../../components/navBar/Navbar";
 import "./purchase.css"
 import { Col, Container, Row, Table } from "react-bootstrap";
 
 const Purchases = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
     const userId = JSON.parse(localStorage.getItem("id"))
-    let purchase = useSelector((state) => state.shop_fav_rating.purchases )
+    let purchase = useSelector((state) => state.shop.purchases )
     
     useEffect(() => {
-      dispatch(getAllPurchases(userId))
+      // dispatch(getAllPurchases(userId))
     }, [ userId])
 
 

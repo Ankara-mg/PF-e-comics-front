@@ -2,7 +2,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { sendEmail } from '../../redux/actions/admin';
-import { processPayment, removeFromCartOnly } from '../../redux/actions/shop_favs_rating';
+import { processPayment } from '@redux/actions/shop';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './payment.css'
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 const Payment = () => {
     const backendURL = import.meta.env.VITE_API;
     const url = `${backendURL}/shop/`
-    const stateCart = useSelector(state => state.shop_fav_rating.cart_shopping)
+    const stateCart = useSelector(state => state.shop.shoppingCart)
     let listEmail = []
     const stripe = useStripe()
     const elements = useElements()
@@ -78,7 +78,7 @@ const Payment = () => {
                 const status = "Completo"
                 stateCart.map(p => dispatch(processPayment(p, card, status)))
 
-                stateCart.map(p => dispatch(removeFromCartOnly(p)))
+                // stateCart.map(p => dispatch(removeFromCartOnly(p)))
                 setProcessing(false);
                 
                 //navigate("/user/home")

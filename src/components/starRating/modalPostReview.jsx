@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './modalPostReview.css'
-import { postReview } from '../../redux/actions/reviews'
+import { postRating } from '@redux/actions/ratings'
 import Swal from 'sweetalert2'
 
 
@@ -39,7 +39,7 @@ const ModalPostReview = ({ data, theme }) => {
 
 
   function sendReview() {
-    dispatch(postReview(input))
+    dispatch(postRating(input))
     if (localUser) {
       Swal.fire({
         title: 'Post review',

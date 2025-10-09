@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../redux/actions/shop_favs_rating";
+import { removeFromCart } from "@redux/actions/shop";
 import { Button, Col, Container, Row, Table } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import NavBar from "../../components/navBar/Navbar";
@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import cartIcon from '../../assets/cart2.png'
 
 const ShoppingCart2 = () => {
-  const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
+  const cart_shopping = useSelector(state => state.shop.shoppingCart)
   //JSON.parse(localStorage.getItem('carrito'))
   const dispatch = useDispatch()
   let totalPrice = 0;

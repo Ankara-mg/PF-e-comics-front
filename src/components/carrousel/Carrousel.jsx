@@ -12,7 +12,7 @@ import Item from './Item';
 import "./Carrousel.css"
 
 const ControlledCarousel = () => {
-  const theme_params = useSelector((state) => state.params.theme_params);
+  const theme_params = useSelector((state) => state.global.theme);
   const { theme } = theme_params
 
   const [index, setIndex] = useState(0);

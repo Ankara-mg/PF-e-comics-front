@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllVolumes, reset_comicState } from "../../redux/actions/comics";
-import { setShoppingCart } from "../../redux/actions/shop_favs_rating";
-import { setPage } from "../../redux/actions/filters";
+import { getAllComics, /* resetComics */ } from "@redux/actions/comics";
+import { getShoppingCart } from "@redux/actions/shop";
+import { setCurrentPage } from "@redux/reducers/global";
 import ComicCard from "../../components/card/Card";
 import Paginado from "../paginado/paginado";
 import Spinner from 'react-bootstrap/Spinner';
@@ -10,12 +10,12 @@ import "./CardsGallery.css"
 
 const CardsGallery = () => {
   const dispatch = useDispatch();
-  let currentPage = useSelector(state => state.filters.currentPage);
+  let currentPage = useSelector(state => state.global.currentPage);
   // eslint-disable-next-line no-unused-vars
   let [comicPerPage, setComicPerPage] = useState(12)
-  let comics = useSelector((state) => state.comicsReducer.comics_filter);
-  let filters = useSelector((state) => state.filters.filters);
-  let loading_state = useSelector((state) => state.comicsReducer.loading);
+  let comics = useSelector((state) => state.comics.filteredComics);
+  // let filters = useSelector((state) => state.filters.filters);
+  let loading_state = useSelector((state) => state.global.loading);
   let indexOfLastComic = currentPage * comicPerPage;
   let indexOfFirstComic = indexOfLastComic - comicPerPage;
   let currentComic = comics.slice(indexOfFirstComic, indexOfLastComic);
@@ -25,7 +25,7 @@ const CardsGallery = () => {
 
   useEffect(() => {
     if (userId) {
-      dispatch(setShoppingCart(userId))
+      dispatch(getShoppingCart(userId))
     }
   }, [dispatch, userId])
 
@@ -33,15 +33,16 @@ const CardsGallery = () => {
 
 
   useEffect(() => {
-    dispatch(reset_comicState())
+    dispatch(getAllComics())
+/*     dispatch(resetComics())
     if (!filters) {
-      dispatch(getAllVolumes())
     }
-  }, [dispatch, filters])
+  }, [dispatch, filters]) */
+  }, [dispatch])
 
 
   const paginado = pageNumber => {
-    dispatch(setPage(pageNumber))
+    dispatch(setCurrentPage(pageNumber))
   }
 
   return (

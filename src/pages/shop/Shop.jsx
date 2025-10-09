@@ -1,6 +1,6 @@
 import { ListGroup } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../redux/actions/shop_favs_rating";
+import { removeFromCart } from "@redux/actions/shop";
 
 import NavBar from "../../components/navBar/Navbar";
 import "./Shop.css"
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const Shop = () => {
 
-  const cart_shopping = useSelector(state => state.shop_fav_rating.cart_shopping)
+  const cart_shopping = useSelector(state => state.shop.shoppingCart)
 
   const dispatch = useDispatch()
 

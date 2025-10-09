@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFavorite, addFavorite, addToCart, removeFromCart } from "../../redux/actions/shop_favs_rating";
+import { addToCart, removeFromCart } from "@redux/actions/shop";
+import { removeFavorite, addFavorite } from "@redux/actions/favorites";
 
 
 import { Col, Row } from 'react-bootstrap'
@@ -8,13 +9,13 @@ import { Col, Row } from 'react-bootstrap'
 import "./ShoppingBar.css"
 
 const ShoppingBar = ({ price, comic }) => {
-  const favourite = useSelector((state) => state.shop_fav_rating.favourite)
+  const favourite = useSelector((state) => state.favorites.favorites)
   const dispatch = useDispatch();
   //const cart_shopping = useSelector((state) => state.cart_shopping);
   const idUsuer = JSON.parse(localStorage.getItem("id"))
   /* ----------- Revisar si el comic ya está comprado ------- */
 
-  const cart_shopping = useSelector((state) => state.shop_fav_rating.cart_shopping);
+  const cart_shopping = useSelector((state) => state.shop.shoppingCart);
   const [countProducts, setCountProducts] = useState(cart_shopping.length);
   const [comprado, setComprado] = useState(
     cart_shopping.some(c => c.id === comic.id)

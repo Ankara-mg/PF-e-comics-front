@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { volumeDetail } from "../../redux/actions/comics";
+import { getComicDetail } from "@redux/actions/comics";
 import { useNavigate, useParams } from "react-router-dom";
 // import Loading from "../loading/Loading";
 import NavBar from '../navBar/Navbar'
@@ -13,15 +13,15 @@ import "./cardDetail.css"
 const CardDetail = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const theme_params = useSelector((state) => state.params.theme_params);
+  const theme_params = useSelector((state) => state.global.theme);
   const { theme } = theme_params;
-  const comic = useSelector((state) => state.comicsReducer.comic);
+  const comic = useSelector((state) => state.comics.comic);
   const { id } = useParams()
   // const rol = JSON.parse(localStorage.getItem("ROL"))
   const { image, name, deck, description, start_year } = comic
 
   useEffect(() => {
-    dispatch(volumeDetail(id))
+    dispatch(getComicDetail(id))
   }, [dispatch, id])
 
 

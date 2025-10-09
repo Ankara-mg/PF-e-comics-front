@@ -11,7 +11,7 @@ import Footer from "@components/footer/Footer";
 import WhisperBubble from "@components/WhisperBubble/WhisperBubble";
 
 const Home = () => {
-  let { isWaking } = useSelector(state => state.comicsReducer);
+  const { isWaking } = useSelector(state => state.global.isWaking);
 
   return (
     <div className="home-container">

@@ -1,14 +1,15 @@
 import { api } from "@redux/helpers";
 import { setLoading, setErrors } from "@redux/reducers/global";
+import { setPublishers } from "@redux/reducers/publishers";
 
-// TODO - Mover funciones a los componentes.
-export function registerUser(userData) {
+export const getPublishers = () => {
   return async (dispatch) => {
     dispatch(setLoading(true));
     try {
-      await api("post", "/auth/signup", userData);
+      const publishers = await api("get", "/publishers");
+      dispatch(setPublishers(publishers));
     } catch (error) {
-      dispatch(setErrors({ signUp: error }));
+      dispatch(setErrors({ fetchPublishers: error }));
     } finally {
       dispatch(setLoading(false));
     }

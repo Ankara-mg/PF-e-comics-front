@@ -17,7 +17,7 @@ import "./Navbar.css"
 // import { MdOutlineSignalCellularNull } from 'react-icons/md';
 
 function NavBar({ searchbar = true }) {
-  const theme_params = useSelector((state) => state.params.theme_params);
+  const theme_params = useSelector((state) => state.global.theme);
   const { theme } = theme_params
 
   useEffect(() => {

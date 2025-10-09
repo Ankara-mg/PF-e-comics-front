@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPublishers, setPage } from '../../redux/actions/filters'
-// import { getAllVolumes } from "../../redux/actions/comics";
-import { filterPublishers, filterAD, getAllVolumes } from "../../redux/actions/comics";
+import { setCurrentPage } from '@redux/reducers/global';
+import { getPublishers } from "@redux/actions/publishers";
+// import { getAllComics } from "../../redux/actions/comics";
+import { filterByPublisher, sortByName, getAllComics } from "@redux/actions/comics";
 
 import "./Sidebar.css"
 
@@ -13,9 +14,9 @@ const Sidebars = () => {
 
   // const [currentPage, setCurrentPage] = useState(1) 
   // let characters = useSelector(state => state.filters.characters)
-  let publishers = useSelector((state) => state.filters.publishers)
-  const comics = useSelector((state) => state.comicsReducer.comics)
-  const comicsFilter = useSelector((state) => state.comicsReducer.comics_filter)
+  let publishers = useSelector((state) => state.publishers.publishers)
+  const comics = useSelector((state) => state.comics.comics)
+  const comicsFilter = useSelector((state) => state.comics.filteredComics)
 
   useEffect(() => {
     dispatch(getPublishers())
@@ -24,28 +25,28 @@ const Sidebars = () => {
   function handlePublishers(e) {
     e.preventDefault()
     if(e.target.value === 'null') return
-    dispatch(filterPublishers(e.target.value, comics));
-    dispatch(setPage(1))
+    dispatch(filterByPublisher(e.target.value, comics));
+    dispatch(setCurrentPage(1))
   }
 
   function handleFilterAD(e) {
     e.preventDefault();
     if(e.target.value === 'null') return
-    dispatch(filterAD(e.target.value, comicsFilter));
+    dispatch(sortByName(e.target.value, comicsFilter));
     setOrder(`Ordenado ${e.target.value}`);
     // setCurrentPage(1)
   }
 
   function resetComics(){
-    dispatch(getAllVolumes())
+    dispatch(getAllComics())
   }
 
   return (
     <div style={{ height: "100px" }}>
       <select className='w-25 m-2 p-2 border border-white rounded' onChange={e => handlePublishers(e)}>
         <option value='null' disabled selected >Filter by Publisher...</option>
-        {publishers.map((publisher, i) => (
-            <option key={i} value={publisher}>{publisher}</option>
+        {publishers.map((publisher) => (
+            <option key={publisher.id} value={publisher.name}>{publisher.name}</option>
           ))}
       </select>
 

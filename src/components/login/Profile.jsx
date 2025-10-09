@@ -1,17 +1,17 @@
 import { useEffect } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useDispatch } from 'react-redux'
-import { creategame } from '../../redux/actions/filters'
+// import { useDispatch } from 'react-redux'
+// import { creategame } from '../../redux/actions/filters'
 
 
 
 export default function Profile() {
 
   const { user, isAuthenticated, isLoading } = useAuth0()
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(creategame(user))
+    // dispatch(creategame(user))
   },)
 
 

@@ -1,21 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import comicsReducer from '../reducers/comicsReducer';
-import admin from '../reducers/admin';
-import shop_fav_rating from '../reducers/shop_fav_rating';
-import filters from '../reducers/filters';
-import params from '../reducers/params';
-import reviews from '../reducers/reviews';
+import comics from '@redux/reducers/comics';
+import admin from '@redux/reducers/admin';
+import favorites from '@redux/reducers/favorites';
+import global from '@redux/reducers/global';
+import publishers from '@redux/reducers/publishers';
+import ratings from '@redux/reducers/ratings';
+import shop from '@redux/reducers/shop';
+import user from '@redux/reducers/user';
 
 const reducer = {
-    comicsReducer,
+    comics,
     admin,
-    shop_fav_rating,
-    filters,
-    params,
-    reviews
+    favorites,
+    global,
+    publishers,
+    ratings,
+    shop,
+    user,
 }
-
 
 const store = configureStore({
     reducer: reducer,
